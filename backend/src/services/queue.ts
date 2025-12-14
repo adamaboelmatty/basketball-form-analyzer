@@ -1,5 +1,6 @@
 import { CloudTasksClient } from "@google-cloud/tasks";
 import { v4 as uuidv4 } from "uuid";
+import type { ShootingAngles } from "./cv/angle_calculator";
 
 const client = new CloudTasksClient();
 
@@ -83,7 +84,7 @@ export async function processAnalysisTask(params: {
   const { downloadVideo } = await import("./storage");
   const { analyzeShootingForm } = await import("./coaching/gemini");
   const { extractShootingFrames } = await import("./cv/video");
-  const { runMediaPipePose, ShootingAngles } = await import("./cv/angle_calculator");
+  const { runMediaPipePose } = await import("./cv/angle_calculator");
   const { uploadSkeletonFrames, selectKeySkeletonFrames, cleanupSkeletonFrames } = await import("./cv/skeleton_generator");
 
   const skeletonOutputDir = `/tmp/${analysisId}-skeletons`;
